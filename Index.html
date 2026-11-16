@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Backrooms: Level 0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Source+Sans+3:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="gl" aria-label="First-person view of the Backrooms"></canvas>
+
+  <!-- camcorder overlays -->
+  <div class="ov" id="scan"></div>
+  <div class="ov"><canvas id="nz" width="160" height="90"></canvas></div>
+  <div class="ov" id="trk"></div>
+  <div class="ov" id="vg"></div>
+  <div class="ov" id="fx"></div>
+
+  <!-- camcorder HUD -->
+  <div id="hud">
+    <div id="tl">LEVEL 0<br><span id="hint"></span></div>
+    <div id="tr"><b>● REC</b> <span id="tc">00:00:00</span><br>PLAY ▶ SP</div>
+    <div id="bl">STAMINA<div class="bar"><i id="st"></i></div>ALMOND WATER <span id="aw">0</span></div>
+    <canvas id="map" width="150" height="150"></canvas>
+  </div>
+
+  <!-- game UI -->
+  <div class="rb" id="chat" role="log" aria-live="polite"></div>
+  <div class="rb" id="lb"></div>
+  <div class="rb" id="hpw"><div id="hpf"></div></div>
+  <div class="rb" id="hb">
+    <div class="sl"><b id="s1">0</b>1 Water</div>
+    <div class="sl"><b id="s2">3</b>2 Flare</div>
+  </div>
+
+  <!-- title / game-over panel (js/game.js swaps its content on win or death) -->
+  <div id="msg" role="dialog" aria-label="Backrooms: Level 0">
+    <h1>BACKROOMS</h1>
+    <p>Level 0. You noclipped out of reality.<br>
+       The level is unstable. It watches how you play, and it changes.<br>
+       Find the green EXIT door.</p>
+    <dl class="keys">
+      <dt>WASD / arrows</dt><dd>move</dd>
+      <dt>Mouse</dt><dd>look</dd>
+      <dt>Shift</dt><dd>sprint</dd>
+      <dt>Space</dt><dd>jump</dd>
+      <dt>1</dt><dd>drink almond water</dd>
+      <dt>2</dt><dd>throw a flare</dd>
+      <dt>M</dt><dd>toggle map</dd>
+    </dl>
+    <p class="start">Click or press Enter to begin</p>
+  </div>
+
+  <!-- posterize filter used by js/game.js (#ps) -->
+  <svg width="0" height="0" style="position:fixed" aria-hidden="true">
+    <filter id="ps">
+      <feComponentTransfer>
+        <feFuncR type="discrete" tableValues="0 .11 .22 .33 .44 .56 .67 .78 .89 1"/>
+        <feFuncG type="discrete" tableValues="0 .11 .22 .33 .44 .56 .67 .78 .89 1"/>
+        <feFuncB type="discrete" tableValues="0 .11 .22 .33 .44 .56 .67 .78 .89 1"/>
+      </feComponentTransfer>
+    </filter>
+  </svg>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
